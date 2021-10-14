@@ -102,6 +102,12 @@ Returns all posts from a user, based off of their user ID
 }
 ....
 ```
+__POST__: *"/subscribe"*
+This will allow a user to signup for the website
+
+__GET__: *"/user/login"*
+This will allow a user to login
+
 __PATCH__: *"/post/:id"*
 This will allow a user to edit one of their posts
 
