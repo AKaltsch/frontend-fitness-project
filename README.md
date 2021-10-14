@@ -29,7 +29,7 @@ A ```User``` has many ```Exercises```, and has many ```Workouts``` through ```Ex
 
 - id
 - name
-- uaername
+- username
 - password_digest
 
 ### Workout ###
@@ -68,6 +68,57 @@ A ```DataEntry``` belongs to ```Exercise```
 A ```Post``` has one ```User```
 
 - id 
+- user_id
 - title
 - body
-- user_id
+
+## API ##
+
+### Routes ###
+
+__GET__: *"/me"*
+Returns the current users details, JSON response:
+```json
+{
+  id: 1
+  name: "Joe Shmoe"
+  username: "user1"
+}
+```
+__GET__: *"/user/:id/posts"*
+Returns all posts from a user, based off of their user ID
+```json
+{
+  id: 0
+  user_id: 1
+  title: "First Post"
+  body: "Making my first post..."
+}
+{
+  id: 1
+  user_id: 1
+  title: "Second Post"
+  body: "Making my second post..."
+}
+....
+```
+__PATCH__: *"/post/:id"*
+This will allow a user to edit one of their posts
+
+__DELETE__: *"/post/:id"*
+This will allow a user to DELETE one of their posts
+
+__POST__: *"/workouts"*
+This will allow a user to create a new workout
+
+__GET__: *"/user/id:/workouts"*
+This will allow a user to see all of hteir workouts
+
+__DELETE__: *"/workouts/:id"*
+This will allow a user to delete a workout
+
+__PATCH__: *"/workouts/:id"*
+This will allow a user to edit a workout
+
+__GET__: *"/exercises"*
+Returns a list of all exercises available
