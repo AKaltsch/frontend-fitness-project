@@ -18,3 +18,56 @@ The app I would like to create(name to be determined) would be an interactive, s
 - As a user, I would like to be able to have my own comment feed where me and my followers can leave comments and posts
 - As a user, I want to be able to upload a profile picture
 - As a User, I want to be able to mark my outdoor activities on a map, where I would be able to leave a description, title, and upload a photo of the location
+
+## Models and Relationships ##
+
+![image](https://user-images.githubusercontent.com/79191638/137238987-62deffb9-a9e4-4fbd-9ad9-999bfac1915c.png)
+
+### User ###
+
+A ```User``` has many ```Exercises```, and has many ```Workouts``` through ```Exercises```
+
+- id
+- name
+- uaername
+- password_digest
+
+### Workout ###
+
+A ```Workout``` has many ```Exercises``` and ```Posts```, and has many ```Users``` through ```Exercises```
+
+- id
+- name
+- type
+
+### Exercise ###
+
+An ```Exercise``` belongs to ```User``` and ```Workout```, and has many ```DataEntries```
+
+- id
+- name
+- description
+- image_url
+- type
+- workout_id
+- user_id
+
+### DataEntry ###
+
+A ```DataEntry``` belongs to ```Exercise```
+
+- id
+- exercise_id
+- sets
+- reps
+- weight
+- time
+
+### Post ###
+
+A ```Post``` has one ```User```
+
+- id 
+- title
+- body
+- user_id
