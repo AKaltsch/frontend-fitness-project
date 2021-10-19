@@ -1,73 +1,70 @@
-# frontend fitness project
-Flat Iron final project
+# Getting Started with Create React App
 
-## Project Pitch ##
-The app I would like to create(name to be determined) would be an interactive, social, fitness tracker. Often times when people try to get into shape, they are most successful when they do it with someone else. This is because having someone else there will help motivate you and drive you in times when you're feeling lazy or distracted. Also, it would be a way for friends, who live far apart, to train together for an event such as a marathon or spartan race. The app I am proposing would help workout buddies keep track of each others progress, keep track of your own progress, motivate eachother, and inspire a little freiendly competition.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## User Stories ##
-- As a user, I want to be able to create an account so that I can log ina and use the app
-- As a user, I want to be able to create new workouts and have those workouts persist through logging in/out
-- As a user, I want to be able to add data(weight, reps, time) to my created workouts anytime I am logged in, and have the data persist through logging in/out
-- As a user, I want to be able to see graphs of my progress for each workout
-- As a user, I want to also be able to keep track of my weight through entries and a graph
-- As a user, I want to be able to send requests to follow someone else
-- As a user, I want to be able to accept or deny follow requests
-- As a user, I want to be able to compare my progess with someone else I follow in a side by side progress graph comparison
+## Available Scripts
 
-## Stretch Goals ##
-- As a user, I would like to be able to have my own comment feed where me and my followers can leave comments and posts
-- As a user, I want to be able to upload a profile picture
-- As a User, I want to be able to mark my outdoor activities on a map, where I would be able to leave a description, title, and upload a photo of the location
+In the project directory, you can run:
 
-## Models and Relationships ##
+### `npm start`
 
-![image](https://user-images.githubusercontent.com/79191638/137238987-62deffb9-a9e4-4fbd-9ad9-999bfac1915c.png)
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### User ###
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-A ```User``` has many ```Exercises```, and has many ```Workouts``` through ```Exercises```
+### `npm test`
 
-- id
-- name
-- uaername
-- password_digest
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Workout ###
+### `npm run build`
 
-A ```Workout``` has many ```Exercises``` and ```Posts```, and has many ```Users``` through ```Exercises```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- id
-- name
-- type
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### Exercise ###
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-An ```Exercise``` belongs to ```User``` and ```Workout```, and has many ```DataEntries```
+### `npm run eject`
 
-- id
-- name
-- description
-- image_url
-- type
-- workout_id
-- user_id
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-### DataEntry ###
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-A ```DataEntry``` belongs to ```Exercise```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- id
-- exercise_id
-- sets
-- reps
-- weight
-- time
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Post ###
+## Learn More
 
-A ```Post``` has one ```User```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-- id 
-- title
-- body
-- user_id
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
