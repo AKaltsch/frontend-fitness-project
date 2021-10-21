@@ -10,6 +10,9 @@ import SigninHome from './components/SigninHome'
 
 function App() {
 
+
+  // backend_deploy_url: https://we-fitness-backend.herokuapp.com/
+
   const url = "http://localhost:3000/"
 
   useEffect(() => {
