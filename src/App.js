@@ -10,16 +10,33 @@ import SigninHome from './components/SigninHome'
 
 function App() {
 
+  const production = "https://we-fitness-backend.herokuapp.com/"
+  const developement = "http://localhost:3000/"
+  const url = (process.env.NODE_ENV ? developement : production)
 
-  // backend_deploy_url: https://we-fitness-backend.herokuapp.com/
-
-  const url = "http://localhost:3000/"
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState()
 
   useEffect(() => {
-    fetch(`${url}exercises`)
-    .then((res) => res.json())
-    .then(data => console.log(data))
-  }, [])
+    const token = localStorage.getItem("jwt");
+    console.log("token: " + token)
+    // console.log(user.user.username)
+    fetch(`${url}/api/v1/profile`, {
+      method: "GET",
+      headers: {
+      Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          setLoggedIn(true)
+          setUser(data.user)
+        });
+      } else {
+        console.log("please log in")
+      }
+    });
+    });
 
   return (
     

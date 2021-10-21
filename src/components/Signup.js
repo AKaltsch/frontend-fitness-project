@@ -6,6 +6,10 @@ function Signup() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    // const production = "https://we-fitness-backend.herokuapp.com/"
+    // const developement = "http://localhost:3000"
+    // const url = (process.env.NODE_ENV ? developement : production)
+
     const url = "http://localhost:3000"
 
     const history = useHistory();
@@ -13,20 +17,18 @@ function Signup() {
 
     function handleSignupSubmit(e) {
         e.preventDefault()
-        fetch(`${url}/users`, {
+        fetch(`${url}/api/v1/users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",
             },
-            body: JSON.stringify({user: {
-                username: `${username}`,
-                password: `${password}`,
-            }}),
+            body: JSON.stringify({user: {username, password}}),
         })
             .then((r) => r.json())
             .then((data) => {
                 history.push("/home");
+                console.log(data)
             }
             );
     }
