@@ -31,7 +31,6 @@ function App() {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
-      console.log(response)
       if (response.ok) {
         response.json().then((data) => {
           setLoggedIn(true);
@@ -42,30 +41,6 @@ function App() {
       }
     });
   }, []);
-
-  // useEffect(() => {
-  //   const token = localStorage.token;
-  //   console.log("token: " + token);
-  //   if (
-  //     typeof token !== "undefined" &&
-  //     token.length > 1 &&
-  //     token !== "undefined"
-  //   ) {
-  //     fetch(`${url}/api/v1/auto_login`, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ token }),
-  //     })
-  //       .then((r) => r.json())
-  //       .then((user) => setUser(user), setLoggedIn(true));
-  //       console.log(loggedIn)
-  //   } else {
-  //     console.log("No token found, try logging in!");
-  //   }
-  // }, []);
 
   function onLogin(username, password) {
     fetch(`${url}/api/v1/login`, {
@@ -165,8 +140,8 @@ function App() {
             <NavLink className="links" to="/home">
               Home
             </NavLink>
-            <NavLink className="links" to="/workouts">
-              Workouts
+            <NavLink className="links" to="/hikeMap">
+              Hike Map 
             </NavLink>
             <NavLink className="links" to="/progress">
               Progress
@@ -184,7 +159,7 @@ function App() {
           <Route exact path="/progress">
             <Progress />
           </Route>
-          <Route exact path="hikeMap">
+          <Route exact path="/hikeMap">
             <HikeMap />
           </Route>
           <Route exact path="/signup">
