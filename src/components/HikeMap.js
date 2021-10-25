@@ -25,13 +25,14 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
+import "@reach/combobox/styles.css"
 
 //--------------------------------------
 
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "100vw",
-  height: "40vw",
+  height: "55vw",
 };
 
 const center = {
