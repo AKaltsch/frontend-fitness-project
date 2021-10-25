@@ -25,6 +25,7 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
+import "@reach/combobox/styles.css"
 
 //--------------------------------------
 
@@ -79,8 +80,8 @@ function HikeMap() {
   if (!isLoaded) return "Loading Maps...";
 
   return (
-    <div>
-      <h1>HikeMap</h1>
+    <div >
+      {/* <h1>HikeMap</h1> */}
 
       <Search panTo={panTo} />
       <Locate panTo={panTo} />
@@ -140,7 +141,7 @@ function Locate({ panTo }) {
       }}
     >
       <img
-        src="https://tse4.mm.bing.net/th?id=OIP.oM3wiA88xJyHvbgoc-Z6lQHaHL&pid=Api&P=0&w=173&h=167"
+        src="https://www.freepnglogos.com/uploads/compass-png/compass-maximum-motivation-boot-camp-for-creators-dreamers-20.png"
         alt="locate me"
       />
     </button>
