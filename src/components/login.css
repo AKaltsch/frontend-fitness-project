@@ -25,7 +25,7 @@
 button{
     width: 20%;
     margin: 5px 0;
-    background-color: orange;
+    background-color: #010606;
     padding: 5px;
     font-weight: 600;
     border: none;
@@ -33,6 +33,7 @@ button{
     border-radius: 5px;
     margin-right: auto;
     margin-left: auto;
+    cursor: pointer;
 }
 h1{
     text-align: center;
