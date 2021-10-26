@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { Router, Link } from "react-router-dom";
 import Signup from "./Signup";
 import "./login.css";
 
