@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import Graph from "./Graph";
+import MileForm from "./Forms/MileForm"
+import SquatForm from "./Forms/SquatForm"
+import BenchForm from "./Forms/BenchForm"
+import DistanceForm from "./Forms/DistanceForm"
 
 const production = "https://we-fitness-backend.herokuapp.com/";
 const developement = "http://localhost:3000/";
@@ -46,7 +50,7 @@ function Progress({ user }) {
   const squatData = squatWeight
     .filter((dat) => dat.user_id === user.id)
     .map((dat) => dat.weight);
-    
+
   const benchData = benchWeight
     .filter((dat) => dat.user_id === user.id)
     .map((dat) => dat.weight);
@@ -59,9 +63,13 @@ function Progress({ user }) {
   return (
     <div className="graph">
       <Graph array={mileTimes} label={mileLabel} />
+      <MileForm times={times} setTimes={setTimes} user={user}/>
       <Graph array={distanceData} label={distanceLabel} />
+      <DistanceForm distances={distances} setDistances={setDistances} user={user}/>
       <Graph array={squatData} label={squatLabel} />
+      <SquatForm squatWeight={squatWeight} setSquatWeight={setSquatWeight} user={user}/>
       <Graph array={benchData} label={benchLabel} />
+      <BenchForm benchWeight={benchWeight} setBenchWeight={setBenchWeight} user={user}/>
     </div>
   );
 }
