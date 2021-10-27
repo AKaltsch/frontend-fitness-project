@@ -1,6 +1,6 @@
 //Map Imports-----------------------
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -29,6 +29,10 @@ import "@reach/combobox/styles.css"
 
 //--------------------------------------
 
+const production = "https://we-fitness-backend.herokuapp.com/";
+const developement = "http://localhost:3000/";
+const url = process.env.NODE_ENV ? developement : production;
+
 const libraries = ["places"];
 const mapContainerStyle = {
   width: "100vw",
@@ -46,6 +50,8 @@ const options = {
   zoomControl: true,
 };
 
+// -------------start function--------------------------------------------------
+
 function HikeMap() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -54,6 +60,15 @@ function HikeMap() {
 
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [hikes, setHikes] = useState([])
+
+  useEffect(() => {
+    fetch(`${url}api/v1/hikes`)
+      .then((res) => res.json())
+      .then((data) => setHikes(data));
+  }, []);
+
+  console.log(markers)
 
   const onMapClick = React.useCallback((event) => {
     setMarkers((current) => [
@@ -94,10 +109,12 @@ function HikeMap() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {markers.map((marker) => (
+        {hikes.map((marker) => (
           <Marker
-            key={marker.time.toISOString()}
-            position={{ lat: marker.lat, lng: marker.lng }}
+            key={marker.id}
+            // key={marker.time.toISOString()}
+            position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }}
+            // position={{ lat: marker.lat, lng: marker.lng }}
             onClick={() => {
               setSelected(marker);
               console.log(selected);
