@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// const production = "https://we-fitness-backend.herokuapp.com/";
+// const developement = "http://localhost:3000/";
+// const url = process.env.NODE_ENV==="production" ? production : developement;
 const production = "https://we-fitness-backend.herokuapp.com/";
 const developement = "http://localhost:3000/";
 const url = process.env.NODE_ENV ? developement : production;

@@ -108,7 +108,7 @@ function App() {
       {loggedIn ? (
         <div>
           <Router>
-            <Navbar logout={logout}/>
+            <Navbar logout={logout} />
             <nav className="navbar-container">
               {/* {user ? <img src={user.avatar} alt="you" /> : ""}
               <NavLink className="links" to="/home">
@@ -131,7 +131,7 @@ function App() {
               <Progress user={user}/>
             </Route>
             <Route exact path="/hikeMap">
-              <HikeMap />
+              <HikeMap user={user}/>
             </Route>
             <Route exact path="/signup">
               <Signup />
