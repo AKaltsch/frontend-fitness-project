@@ -53,7 +53,13 @@ const options = {
 
 // -------------start function--------------------------------------------------
 
+<<<<<<< HEAD
 function HikeMap({ user }) {
+=======
+
+function HikeMap({ user }) {
+
+>>>>>>> fe35d51da2c865c2737f1b6d86b2cb8e2cd77c71
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -123,6 +129,10 @@ function HikeMap({ user }) {
         onClick={(e) => handleSetMarker(e)}
         hikes={hikes}
       >
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe35d51da2c865c2737f1b6d86b2cb8e2cd77c71
         {marker ? (
           <Marker
             // scale={1}
@@ -149,6 +159,10 @@ function HikeMap({ user }) {
               lng: parseFloat(hike.lng),
             }}
             // position={{ lat: hike.lat, lng: hike.lng }}
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe35d51da2c865c2737f1b6d86b2cb8e2cd77c71
             onClick={() => {
               setSelected(hike);
               console.log(selected);
