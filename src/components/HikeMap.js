@@ -53,7 +53,9 @@ const options = {
 
 // -------------start function--------------------------------------------------
 
+
 function HikeMap({ user }) {
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -123,6 +125,7 @@ function HikeMap({ user }) {
         onClick={(e) => handleSetMarker(e)}
         hikes={hikes}
       >
+
         {marker ? (
           <Marker
             // scale={1}
@@ -149,6 +152,7 @@ function HikeMap({ user }) {
               lng: parseFloat(hike.lng),
             }}
             // position={{ lat: hike.lat, lng: hike.lng }}
+
             onClick={() => {
               setSelected(hike);
               console.log(selected);
