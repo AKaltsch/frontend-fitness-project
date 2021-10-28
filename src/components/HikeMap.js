@@ -1,5 +1,6 @@
 //Map Imports-----------------------
 import React from "react";
+import HikesForm from "./Forms/HikesForm"
 import { useState, useEffect } from "react";
 import {
   GoogleMap,
@@ -25,7 +26,7 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-import "@reach/combobox/styles.css"
+import "@reach/combobox/styles.css";
 
 //--------------------------------------
 
@@ -52,15 +53,15 @@ const options = {
 
 // -------------start function--------------------------------------------------
 
-function HikeMap() {
+function HikeMap({ user }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
-  const [markers, setMarkers] = useState([]);
+  const [hikes, setHikes] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [hikes, setHikes] = useState([])
+  const [marker, setMarker] = useState([])
 
   useEffect(() => {
     fetch(`${url}api/v1/hikes`)
@@ -68,10 +69,10 @@ function HikeMap() {
       .then((data) => setHikes(data));
   }, []);
 
-  console.log(markers)
+  console.log(hikes);
 
   const onMapClick = React.useCallback((event) => {
-    setMarkers((current) => [
+    setHikes((current) => [
       ...current,
       {
         lat: event.latLng.lat(),
@@ -88,14 +89,24 @@ function HikeMap() {
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(15);
   }, []);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps...";
 
+  function handleSetMarker(e) {
+    setMarker({
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+      date_created: new Date().toLocaleDateString(),
+    });
+  }
+  // console.log("Marker Lat-Lng", marker.lat, marker.lng);
+  console.log(marker)
+
   return (
-    <div >
+    <div>
       {/* <h1>HikeMap</h1> */}
 
       <Search panTo={panTo} />
@@ -108,21 +119,44 @@ function HikeMap() {
         options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
+        selected={selected}
+        onClick={(e) => handleSetMarker(e)}
+        hikes={hikes}
       >
-        {hikes.map((marker) => (
+        {marker ? (
           <Marker
-            key={marker.id}
-            // key={marker.time.toISOString()}
-            position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }}
-            // position={{ lat: marker.lat, lng: marker.lng }}
+            // scale={1}
+            position={{
+              lat: parseFloat(marker.lat),
+              lng: parseFloat(marker.lng),
+            }}
+            animation={0}
+            draggable={true}
+            onDragEnd={handleSetMarker}
+          />
+        ) : (
+          ""
+        )}
+
+        {hikes.map((hike) => (
+          <Marker
+            selected={selected}
+            key={hike.id}
+            draggable={false}
+            // key={hike.time.toISOString()}
+            position={{
+              lat: parseFloat(hike.lat),
+              lng: parseFloat(hike.lng),
+            }}
+            // position={{ lat: hike.lat, lng: hike.lng }}
             onClick={() => {
-              setSelected(marker);
+              setSelected(hike);
               console.log(selected);
             }}
           />
         ))}
 
-        {selected ? (
+        {/* {selected ? (
           <InfoWindow
             position={{ lat: selected.lat, lng: selected.lng }}
             onCloseClick={() => {
@@ -134,8 +168,41 @@ function HikeMap() {
               <p>{formatRelative(selected.time, new Date())}</p>
             </div>
           </InfoWindow>
+        ) : null} */}
+        {selected ? (
+          <InfoWindow
+            hikes={hikes}
+            options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
+            position={{
+              lat: parseFloat(selected.lat),
+              lng: parseFloat(selected.lng),
+            }}
+            onCloseClick={() => setSelected(null)}
+          >
+            <div className="infoWindow">
+              <h2>{selected.title}</h2>
+              <img
+                src={selected.image_url}
+                alt="mural_thumbnail"
+                width="270"
+                height="auto"
+              />
+              <p>
+                {" "}
+                Description:<strong>{selected.description}</strong>
+              </p>
+              <p>
+                {" "}
+                Submitted: <strong>{selected.date_created}</strong>
+              </p>
+              <p>
+                Distance: <strong>{selected.distance} Miles</strong>
+              </p>
+            </div>
+          </InfoWindow>
         ) : null}
       </GoogleMap>
+      <HikesForm hikes={hikes} setHikes={setHikes} marker={marker} setMarker={setMarker} user={user}/>
     </div>
   );
 }
@@ -147,10 +214,10 @@ function Locate({ panTo }) {
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-              panTo({
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude,
-              })
+            panTo({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
           },
           () => console.log("error"),
           options

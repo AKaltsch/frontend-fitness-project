@@ -131,7 +131,7 @@ function App() {
               <Progress user={user}/>
             </Route>
             <Route exact path="/hikeMap">
-              <HikeMap />
+              <HikeMap user={user}/>
             </Route>
             <Route exact path="/signup">
               <Signup />
