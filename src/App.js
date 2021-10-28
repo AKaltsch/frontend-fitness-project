@@ -12,6 +12,9 @@ import HikeMap from "./components/HikeMap";
 import Signup from "./components/Signup";
 import SigninHome from "./components/SigninHome";
 import Navbar from "./components/Navbar";
+import CalorieTracker from "./components/CalorieTracker";
+
+//import "./App.css"
 
 function App() {
   const production = "https://we-fitness-backend.herokuapp.com/";
@@ -126,6 +129,9 @@ function App() {
             </nav>
             <Route exact path="/">
               <Home currentUser={user} />
+            </Route>
+            <Route exact path="/calorie-tracker">
+              <CalorieTracker />
             </Route>
             <Route exact path="/progress">
               <Progress user={user}/>

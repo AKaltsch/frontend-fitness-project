@@ -12,7 +12,7 @@ function Navbar({logout}) {
         <NavMenu>
           <NavLink to="/progress">Progress</NavLink>
           <NavLink to="/hikemap">HikeMap</NavLink>
-          <NavLink to="/contact-info">Contact Info</NavLink>
+          <NavLink to="/calorie-tracker">Calorie Tracker</NavLink>
         </NavMenu>
         <button className="logout" onClick={logout}>
           Logout
