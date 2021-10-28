@@ -9,7 +9,7 @@ function DistanceForm({distances, setDistances, user}) {
 
   function handleSubmit(e) {
     console.log(distance)
-    fetch(`${url}api/v1/distances`, {
+    fetch(`${url}api/v1/distances`, { 
       method: "POST",
       headers: {
         "Content-Type": "application/json",

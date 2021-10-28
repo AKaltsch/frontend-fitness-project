@@ -61,13 +61,17 @@ function Progress({ user }) {
   const benchLabel = "BenchPress";
 
   return (
-    <div className="graph">
+    <div className="graphs">
+      <h1>Mile Times</h1>
       <Graph array={mileTimes} label={mileLabel} />
       <MileForm times={times} setTimes={setTimes} user={user}/>
+      <h1>Running Distance</h1>
       <Graph array={distanceData} label={distanceLabel} />
       <DistanceForm distances={distances} setDistances={setDistances} user={user}/>
+      <h1>Max Squat Weight</h1>
       <Graph array={squatData} label={squatLabel} />
       <SquatForm squatWeight={squatWeight} setSquatWeight={setSquatWeight} user={user}/>
+      <h1>Max Bench Weight</h1>
       <Graph array={benchData} label={benchLabel} />
       <BenchForm benchWeight={benchWeight} setBenchWeight={setBenchWeight} user={user}/>
     </div>
